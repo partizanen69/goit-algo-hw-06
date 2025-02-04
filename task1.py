@@ -48,30 +48,32 @@ transfers = [
 ]
 G.add_edges_from(transfers)
 
-# Аналіз основних характеристик
-print(f"Загальна кількість станцій: {G.number_of_nodes()}")
-print(f"Загальна кількість з'єднань: {G.number_of_edges()}")
-print("\nСтанції з пересадками (ступінь > 2):")
-for station in G.nodes():
-    degree = G.degree(station)
-    if degree > 2:
-        print(f"{station}: {degree} з'єднання")
 
-# Візуалізація графу
-plt.figure(figsize=(15, 10))
-pos = nx.spring_layout(G, k=1, iterations=50)
+if __name__ == "__main__":
+    # Аналіз основних характеристик
+    print(f"Загальна кількість станцій: {G.number_of_nodes()}")
+    print(f"Загальна кількість з'єднань: {G.number_of_edges()}")
+    print("\nСтанції з пересадками (ступінь > 2):")
+    for station in G.nodes():
+      degree = G.degree(station)
+      if degree > 2:
+          print(f"{station}: {degree} з'єднання")
 
-# Малювання ребер
-nx.draw_networkx_edges(G, pos)
+    # Візуалізація графу
+    plt.figure(figsize=(15, 10))
+    pos = nx.spring_layout(G, k=1, iterations=50)
 
-# Малювання вершин з різними кольорами для різних ліній
-nx.draw_networkx_nodes(G, pos, nodelist=red_line, node_color='red', node_size=700)
-nx.draw_networkx_nodes(G, pos, nodelist=blue_line, node_color='blue', node_size=700)
-nx.draw_networkx_nodes(G, pos, nodelist=green_line, node_color='green', node_size=700)
+    # Малювання ребер
+    nx.draw_networkx_edges(G, pos)
 
-# Додавання підписів станцій
-nx.draw_networkx_labels(G, pos, font_size=8)
+    # Малювання вершин з різними кольорами для різних ліній
+    nx.draw_networkx_nodes(G, pos, nodelist=red_line, node_color='red', node_size=700)
+    nx.draw_networkx_nodes(G, pos, nodelist=blue_line, node_color='blue', node_size=700)
+    nx.draw_networkx_nodes(G, pos, nodelist=green_line, node_color='green', node_size=700)
 
-plt.title("Схема метро Києва")
-plt.axis('off')
-plt.show()
+    # Додавання підписів станцій
+    nx.draw_networkx_labels(G, pos, font_size=8)
+
+    plt.title("Схема метро Києва")
+    plt.axis('off')
+    plt.show()
